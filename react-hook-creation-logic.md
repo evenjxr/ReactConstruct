@@ -15,7 +15,7 @@
 
 以下是`getOrCreateCurrentHook`函数的简化实现：
 
-\`\`\`typescript
+\\\typescript
 // 全局变量，指向当前正在渲染的Fiber节点
 let currentlyRenderingFiber = null;
 
@@ -88,7 +88,7 @@ function getOrCreateCurrentHook() {
 
   return hook;
 }
-\`\`\`
+\\\
 
 ## 详细工作流程
 
@@ -107,7 +107,7 @@ function getOrCreateCurrentHook() {
 
 例如，对于以下组件：
 
-\`\`\`typescript
+\\\typescript
 function Counter() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState('Counter');
@@ -118,7 +118,7 @@ function Counter() {
   
   return <div>{count}</div>;
 }
-\`\`\`
+\\\
 
 首次渲染时，`getOrCreateCurrentHook`会被调用三次（对应三个Hook），每次都会创建一个新的Hook对象并添加到链表中。
 
@@ -147,7 +147,7 @@ function Counter() {
 
 例如，如果我们这样写代码：
 
-\`\`\`typescript
+\\\typescript
 function Counter(props) {
   // 有时候有这个Hook，有时候没有
   if (props.showCount) {
@@ -159,7 +159,7 @@ function Counter(props) {
   
   // ...
 }
-\`\`\`
+\\\
 
 当`props.showCount`从`true`变为`false`时，第二个useState会尝试复用第一个useState的状态，导致`name`变成了`0`，这显然不是我们期望的行为。
 
@@ -169,7 +169,7 @@ function Counter(props) {
 
 例如，`useState`的简化实现：
 
-\`\`\`typescript
+\\\typescript
 function useState(initialState) {
   // 获取当前Hook
   const hook = getOrCreateCurrentHook();
@@ -200,7 +200,7 @@ function useState(initialState) {
     return [hook.memoizedState, hook.queue.dispatch];
   }
 }
-\`\`\`
+\\\
 
 ## 总结
 
